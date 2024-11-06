@@ -1,4 +1,4 @@
-export function deepClone<T>(originValue: T, map = new WeakMap<object, any>()): T {
+export function cloneDeep<T>(originValue: T, map = new WeakMap<object, any>()): T {
   function isObject(originValue: any) {
     return typeof originValue === 'object' && originValue !== null
   }
@@ -26,7 +26,7 @@ export function deepClone<T>(originValue: T, map = new WeakMap<object, any>()): 
   if (originValue instanceof Set) {
     const newSet = new Set<T | object | string | number | boolean | bigint | symbol | undefined>()
     for (const setItem of originValue) {
-      newSet.add(deepClone(setItem))
+      newSet.add(cloneDeep(setItem))
     }
     return newSet as unknown as T
   }
@@ -61,7 +61,7 @@ export function deepClone<T>(originValue: T, map = new WeakMap<object, any>()): 
   map.set((originValue as object), newObj)
   // 遍历普通的key
   for (const key in originValue) {
-    newObj[key] = deepClone(originValue[key], map)
+    newObj[key] = cloneDeep(originValue[key], map)
   }
 
   // for...in遍历不了Symbol的key

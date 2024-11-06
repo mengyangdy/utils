@@ -8,12 +8,12 @@ pnpm add @dylanjs/utils
 
 ## 使用
 
-### deepClone
+### cloneDeep
 
 深拷贝函数
 
 ```typescript
-import { deepClone } from '@dylanjs/utils'
+import { cloneDeep } from '@dylanjs/utils'
 ```
 
 ### nanoid
